@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Malabi Products</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .debug { background: #f0f0f0; padding: 10px; margin: 10px 0; }
+        .product { border: 1px solid #ddd; margin: 10px; padding: 10px; display: inline-block; width: 200px; }
+        .product img { width: 100%; height: 150px; object-fit: cover; }
+    </style>
+</head>
+<body>
+    <h1>Debug - Featured Products Test</h1>
+    
+    <div class="debug">
+        <h2>Debug Information</h2>
+        <div id="debug-info">Loading...</div>
+    </div>
+    
+    <div class="debug">
+        <h2>Featured Products Container</h2>
+        <div id="featuredProducts">Loading products...</div>
+    </div>
+    
+    <script>
+        // Debug logging
+        function debugLog(message) {
+            console.log('DEBUG:', message);
+            const debugDiv = document.getElementById('debug-info');
+            debugDiv.innerHTML += '<p>' + message + '</p>';
+        }
+        
+        // Test fetch
+        async function testProducts() {
+            try {
+                debugLog('Starting product test...');
+                
+                // Test fetch
+                debugLog('Fetching products.json...');
+                const response = await fetch('assets/data/products.json');
+                debugLog('Response status: ' + response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                debugLog('Products loaded: ' + data.products.length + ' total');
+                
+                // Filter featured products
+                const featuredProducts = data.products.filter(p => p.featured);
+                debugLog('Featured products found: ' + featuredProducts.length);
+                
+                // Log featured products
+                featuredProducts.forEach(product => {
+                    debugLog('Featured: ' + product.name + ' - Image: ' + product.image);
+                });
+                
+                // Render products
+                const container = document.getElementById('featuredProducts');
+                
+                if (featuredProducts.length === 0) {
+                    container.innerHTML = '<p style="color: red;">No featured products found!</p>';
+                    return;
+                }
+                
+                container.innerHTML = featuredProducts.map(product => `
+                    <div class="product">
+                        <img src="${product.image}" alt="${product.name}" 
+                             onerror="this.style.background='red'; this.alt='Image failed to load: ${product.image}'">
+                        <h3>${product.name}</h3>
+                        <p>₪${product.price}</p>
+                        <small>Image: ${product.image}</small>
+                    </div>
+                `).join('');
+                
+                debugLog('Products rendered successfully!');
+                
+            } catch (error) {
+                debugLog('ERROR: ' + error.message);
+                console.error('Error:', error);
+                document.getElementById('featuredProducts').innerHTML = 
+                    '<p style="color: red;">Error loading products: ' + error.message + '</p>';
+            }
+        }
+        
+        // Run test when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            debugLog('DOM loaded, starting test...');
+            testProducts();
+        });
+    </script>
+</body>
+</html>

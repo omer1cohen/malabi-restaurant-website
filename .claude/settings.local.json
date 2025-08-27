@@ -18,7 +18,8 @@
       "Read(/C:\\Users\\omer\\Downloads/**)",
       "Bash(curl:*)",
       "Bash(git log:*)",
-      "Bash(del:*)"
+      "Bash(del:*)",
+      "Bash(php:*)"
     ],
     "deny": [],
     "ask": [],
