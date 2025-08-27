@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Image Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .product { border: 1px solid #ddd; margin: 10px; padding: 15px; display: inline-block; width: 250px; }
+        .product img { width: 100%; height: 200px; object-fit: cover; border: 1px solid #ccc; }
+        .product h3 { margin: 10px 0 5px 0; color: #333; }
+        .product p { color: #666; margin: 5px 0; }
+        .error { color: red; background: #ffeeee; padding: 10px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Simple Product Images Test</h1>
+    <p>This page directly loads images without JavaScript to test if they work:</p>
+    
+    <!-- Test all the featured product images directly -->
+    <div class="product">
+        <img src="assets/images/products/malabi-classic.jpg" alt="Classic Malabi" 
+             onerror="this.style.background='red'; this.alt='FAILED: malabi-classic.jpg'">
+        <h3>מלאבי קלאסי</h3>
+        <p>₪16</p>
+        <small>Path: assets/images/products/malabi-classic.jpg</small>
+    </div>
+    
+    <div class="product">
+        <img src="assets/images/products/malabi-chocolate.jpg" alt="Chocolate Malabi" 
+             onerror="this.style.background='red'; this.alt='FAILED: malabi-chocolate.jpg'">
+        <h3>מלאבי שוקולד</h3>
+        <p>₪18</p>
+        <small>Path: assets/images/products/malabi-chocolate.jpg</small>
+    </div>
+    
+    <div class="product">
+        <img src="assets/images/products/malabi-pistachio.jpg" alt="Pistachio Malabi" 
+             onerror="this.style.background='red'; this.alt='FAILED: malabi-pistachio.jpg'">
+        <h3>מלאבי פיסטוק</h3>
+        <p>₪20</p>
+        <small>Path: assets/images/products/malabi-pistachio.jpg</small>
+    </div>
+    
+    <div class="product">
+        <img src="assets/images/products/malabi-family-pack.jpg" alt="Family Pack" 
+             onerror="this.style.background='red'; this.alt='FAILED: malabi-family-pack.jpg'">
+        <h3>חבילה משפחתית</h3>
+        <p>₪85</p>
+        <small>Path: assets/images/products/malabi-family-pack.jpg</small>
+    </div>
+    
+    <h2>Placeholder Images Test</h2>
+    <div class="product">
+        <img src="assets/images/placeholder-malabi.svg" alt="SVG Placeholder" 
+             onerror="this.style.background='red'; this.alt='FAILED: placeholder-malabi.svg'">
+        <h3>SVG Placeholder</h3>
+        <small>Path: assets/images/placeholder-malabi.svg</small>
+    </div>
+    
+    <div class="product">
+        <img src="assets/images/placeholder-malabi.jpg" alt="JPG Placeholder" 
+             onerror="this.style.background='red'; this.alt='FAILED: placeholder-malabi.jpg'">
+        <h3>JPG Placeholder</h3>
+        <small>Path: assets/images/placeholder-malabi.jpg</small>
+    </div>
+    
+    <h2>Working Background Image Test</h2>
+    <div class="product">
+        <img src="assets/images/hero-desserts.jpg" alt="Hero Background" 
+             onerror="this.style.background='red'; this.alt='FAILED: hero-desserts.jpg'">
+        <h3>Hero Background (should work)</h3>
+        <small>Path: assets/images/hero-desserts.jpg</small>
+    </div>
+</body>
+</html>
