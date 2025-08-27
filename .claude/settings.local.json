@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(echo \"git remote add origin <your-repository-url>\")",
+      "Bash(gh repo create:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Read(/C:\\Users\\omer\\Downloads/**)",
+      "Bash(python:*)",
+      "Bash(where node)",
+      "WebFetch(domain:wolt.com)",
+      "Read(/C:\\Users\\omer\\Downloads/**)",
+      "Read(/C:\\Users\\omer\\Downloads/**)",
+      "Read(/C:\\Users\\omer\\Downloads/**)",
+      "Bash(curl:*)",
+      "Bash(git log:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "additionalDirectories": [
+      "X:\\omer\\CODE"
+    ]
+  }
+}

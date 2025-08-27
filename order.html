@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הזמנה - מיסטר מלבי</title>
+    <meta name="description" content="השלמת ההזמנה ויצירת קשר דרך WhatsApp">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html"><h1 class="logo">מיסטר מלבי</h1></a>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">בית</a>
+                    <a href="menu.html" class="nav-link">תפריט</a>
+                    <a href="index.html#about" class="nav-link">אודות</a>
+                    <a href="#contact" class="nav-link">צור קשר</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="order-page">
+        <section class="page-header">
+            <div class="container">
+                <h2 class="page-title">השלמת ההזמנה</h2>
+                <p class="page-subtitle">מלאו את הפרטים שלכם ונשלח לכם את ההזמנה דרך WhatsApp</p>
+            </div>
+        </section>
+
+        <section class="order-content">
+            <div class="container">
+                <div class="order-layout">
+                    <div class="order-form-section">
+                        <h3>פרטי הזמנה</h3>
+                        <form id="orderForm" class="order-form">
+                            <div class="form-group">
+                                <label for="fullName">שם מלא *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                                <span class="error-message" id="fullNameError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">מספר טלפון *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="050-123-4567" required>
+                                <span class="error-message" id="phoneError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">כתובת מלאה *</label>
+                                <textarea id="address" name="address" rows="3" required></textarea>
+                                <span class="error-message" id="addressError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deliveryTime">שעת הגעה מבוקשת *</label>
+                                <select id="deliveryTime" name="deliveryTime" required>
+                                    <option value="">בחר שעה</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="18:30">18:30</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="19:30">19:30</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="20:30">20:30</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="21:30">21:30</option>
+                                </select>
+                                <span class="error-message" id="deliveryTimeError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="specialRequests">בקשות מיוחדות (אופציונלי)</label>
+                                <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="הערות מיוחדות או בקשות נוספות"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="termsAccepted" required>
+                                    אני מסכים לתנאי השירות ולמדיניות הפרטיות
+                                </label>
+                                <span class="error-message" id="termsError"></span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="order-summary-section">
+                        <div class="order-summary">
+                            <h3>סיכום ההזמנה</h3>
+                            <div class="summary-items" id="summaryItems">
+                                <!-- Order items will be loaded here -->
+                            </div>
+                            <div class="summary-totals">
+                                <div class="subtotal">
+                                    <span>סכום ביניים:</span>
+                                    <span>₪<span id="subtotal">0</span></span>
+                                </div>
+                                <div class="delivery-fee">
+                                    <span>דמי משלוח:</span>
+                                    <span>₪<span id="deliveryFee">10</span></span>
+                                </div>
+                                <div class="total">
+                                    <span>סה"כ לתשלום:</span>
+                                    <span>₪<span id="totalAmount">0</span></span>
+                                </div>
+                            </div>
+                            <div class="delivery-info">
+                                <p><strong>זמן משלוח משוער:</strong> 45-60 דקות</p>
+                                <p><strong>אופן תשלום:</strong> במזומן בעת הגעה</p>
+                            </div>
+                            <button type="submit" form="orderForm" class="btn btn-primary btn-large">
+                                שלח הזמנה דרך WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>מיסטר מלבי</h4>
+                    <p>המתוקים המזרח תיכוניים הטובים ביותר</p>
+                </div>
+                <div class="footer-section">
+                    <h4>יצירת קשר</h4>
+                    <p>טלפון: 050-123-4567</p>
+                    <p>WhatsApp: 050-123-4567</p>
+                </div>
+                <div class="footer-section">
+                    <h4>אזורי משלוח</h4>
+                    <p>תל אביב, רמת גן, גבעתיים</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content success-modal">
+            <div class="success-icon">✅</div>
+            <h3>ההזמנה נשלחה בהצלחה!</h3>
+            <p>ההזמנה שלכם נשלחה אלינו דרך WhatsApp. נחזור אליכם בהקדם לאישור ההזמנה.</p>
+            <button class="btn btn-primary" onclick="closeSuccessModal()">חזרה לעמוד הבית</button>
+        </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/order.js"></script>
+    <script src="assets/js/whatsapp.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תפריט - מיסטר מלבי</title>
+    <meta name="description" content="תפריט מלא של מתוקי מלאבי מסורתיים במגוון טעמים">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html"><h1 class="logo">מיסטר מלבי</h1></a>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">בית</a>
+                    <a href="menu.html" class="nav-link active">תפריט</a>
+                    <a href="index.html#about" class="nav-link">אודות</a>
+                    <a href="#contact" class="nav-link">צור קשר</a>
+                </div>
+                <div class="cart-widget">
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="menu-page">
+        <section class="page-header">
+            <div class="container">
+                <h2 class="page-title">התפריט שלנו</h2>
+                <p class="page-subtitle">מגוון רחב של מתוקי מלאבי מסורתיים</p>
+            </div>
+        </section>
+
+        <section class="menu-filters">
+            <div class="container">
+                <div class="filters">
+                    <button class="filter-btn active" data-category="all">הכל</button>
+                    <button class="filter-btn" data-category="classic">קלאסי</button>
+                    <button class="filter-btn" data-category="chocolate">שוקולד</button>
+                    <button class="filter-btn" data-category="pistachio">פיסטוק</button>
+                    <button class="filter-btn" data-category="seasonal">עונתי</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-products">
+            <div class="container">
+                <div class="products-grid" id="menuProducts">
+                    <!-- Products will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>מיסטר מלבי</h4>
+                    <p>המתוקים המזרח תיכוניים הטובים ביותר</p>
+                </div>
+                <div class="footer-section">
+                    <h4>יצירת קשר</h4>
+                    <p>טלפון: 050-123-4567</p>
+                    <p>WhatsApp: 050-123-4567</p>
+                </div>
+                <div class="footer-section">
+                    <h4>אזורי משלוח</h4>
+                    <p>תל אביב, רמת גן, גבעתיים</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>עגלת קניות</h3>
+            <button class="cart-close" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>סה"כ: ₪<span id="cartTotal">0</span></span>
+            </div>
+            <a href="order.html" class="btn btn-primary cart-checkout">להזמנה</a>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/menu.js"></script>
+</body>
+</html>

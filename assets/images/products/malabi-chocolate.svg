@@ -1,0 +1,45 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bowl" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#f8f8f8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="chocolate-malabi" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6B3410;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="chocolate-sauce" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" style="stop-color:#3C1810;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#2C1810;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="#faf8f5"/>
+  
+  <!-- Bowl -->
+  <ellipse cx="200" cy="220" rx="120" ry="60" fill="url(#bowl)" stroke="#d0d0d0" stroke-width="2"/>
+  
+  <!-- Chocolate malabi pudding -->
+  <ellipse cx="200" cy="200" rx="100" ry="45" fill="url(#chocolate-malabi)"/>
+  
+  <!-- Chocolate sauce drizzle -->
+  <path d="M 150 180 Q 180 170 200 175 Q 220 180 250 170" stroke="url(#chocolate-sauce)" stroke-width="4" fill="none" opacity="0.8"/>
+  <path d="M 160 190 Q 190 185 210 190 Q 230 195 240 185" stroke="url(#chocolate-sauce)" stroke-width="3" fill="none" opacity="0.7"/>
+  
+  <!-- Chocolate shavings -->
+  <rect x="185" y="182" width="4" height="2" fill="#2C1810" opacity="0.8" transform="rotate(15 187 183)"/>
+  <rect x="205" y="188" width="5" height="2" fill="#3C1810" opacity="0.7" transform="rotate(-20 207.5 189)"/>
+  <rect x="175" y="195" width="3" height="2" fill="#2C1810" opacity="0.8" transform="rotate(45 176.5 196)"/>
+  <rect x="220" y="183" width="4" height="2" fill="#3C1810" opacity="0.7" transform="rotate(-10 222 184)"/>
+  <rect x="195" y="200" width="3" height="1.5" fill="#2C1810" opacity="0.8" transform="rotate(30 196.5 200.75)"/>
+  
+  <!-- Bowl rim highlight -->
+  <ellipse cx="200" cy="160" rx="120" ry="15" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Title -->
+  <text x="200" y="50" font-family="Arial, sans-serif" font-size="24" fill="#8b4513" text-anchor="middle" font-weight="bold">מלאבי שוקולד</text>
+  <text x="200" y="75" font-family="Arial, sans-serif" font-size="14" fill="#a0522d" text-anchor="middle">Chocolate Malabi</text>
+</svg>
