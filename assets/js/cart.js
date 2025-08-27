@@ -1,10 +1,13 @@
 // Shopping Cart Management
 const cart = {
+    items: [], // Initialize items array
+    
     // Initialize cart from localStorage
     init() {
         this.loadFromStorage();
         this.updateUI();
         this.bindEvents();
+        console.log('Cart initialized with', this.items.length, 'items');
     },
 
     // Add item to cart
@@ -279,6 +282,3 @@ const cart = {
         return true;
     }
 };
-
-// Initialize cart items property
-cart.items = [];

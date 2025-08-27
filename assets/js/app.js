@@ -189,7 +189,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     await ProductManager.loadProducts();
     
     // Initialize cart
-    cart.init();
+    if (typeof cart !== 'undefined' && cart.init) {
+        cart.init();
+        console.log('Cart initialized successfully');
+    } else {
+        console.error('Cart object not found or missing init method');
+    }
     
     // Initialize page-specific functionality
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -234,19 +239,32 @@ function initHomePage() {
 // Load Featured Products for Homepage
 async function loadFeaturedProducts() {
     const featuredContainer = document.getElementById('featuredProducts');
-    if (!featuredContainer) return;
+    if (!featuredContainer) {
+        console.warn('Featured products container not found');
+        return;
+    }
     
     try {
+        // Make sure products are loaded first
+        if (AppState.products.length === 0) {
+            console.log('Products not loaded yet, loading now...');
+            await ProductManager.loadProducts();
+        }
+        
         const featuredProducts = ProductManager.getFeaturedProducts();
+        console.log('Found featured products:', featuredProducts.length);
         
         if (featuredProducts.length === 0) {
             featuredContainer.innerHTML = '<p class="no-products">אין מוצרים מומלצים להצגה</p>';
             return;
         }
         
-        featuredContainer.innerHTML = featuredProducts
+        const productsHTML = featuredProducts
             .map(product => ProductManager.renderProductCard(product))
             .join('');
+        
+        featuredContainer.innerHTML = productsHTML;
+        console.log('Featured products rendered successfully');
             
     } catch (error) {
         console.error('Error loading featured products:', error);
@@ -257,6 +275,12 @@ async function loadFeaturedProducts() {
 // Error handling for missing images
 document.addEventListener('error', (e) => {
     if (e.target.tagName === 'IMG') {
-        e.target.src = 'assets/images/placeholder-malabi.jpg';
+        console.log('Image failed to load:', e.target.src);
+        // Try SVG placeholder first, then JPG
+        if (e.target.src.includes('placeholder-malabi.svg')) {
+            e.target.src = 'assets/images/placeholder-malabi.jpg';
+        } else if (!e.target.src.includes('placeholder-malabi')) {
+            e.target.src = 'assets/images/placeholder-malabi.svg';
+        }
     }
 }, true);

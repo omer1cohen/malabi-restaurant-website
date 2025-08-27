@@ -17,12 +17,14 @@
       "Read(/C:\\Users\\omer\\Downloads/**)",
       "Read(/C:\\Users\\omer\\Downloads/**)",
       "Bash(curl:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(del:*)"
     ],
     "deny": [],
     "ask": [],
     "additionalDirectories": [
       "X:\\omer\\CODE"
     ]
-  }
+  },
+  "outputStyle": "Explanatory"
 }
