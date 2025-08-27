@@ -19,7 +19,12 @@
       "Bash(curl:*)",
       "Bash(git log:*)",
       "Bash(del:*)",
-      "Bash(php:*)"
+      "Bash(php:*)",
+      "Read(C:\\Users\\omer\\Downloads/**)",
+      "Bash(copy \"163471701_439090820686290_787442184363300259_n.jpg\" \"malabi-classic.jpg\")",
+      "Bash(copy \"262090509_4389505947825248_8832357676231285171_n.jpg\" \"malabi-pistachio.jpg\")",
+      "Bash(copy \"209014722_424648615166221_8013709258609624235_n.jpg\" \"malabi-family-pack.jpg\")",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": [],
