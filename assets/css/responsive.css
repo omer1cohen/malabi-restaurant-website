@@ -22,13 +22,18 @@
     font-size: var(--font-size-sm);
   }
 
-  /* Hero Section */
+  /* Hero Section - Enhanced Mobile Experience */
   .hero {
-    min-height: 60vh;
+    min-height: 75vh;
   }
 
   .hero-title {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .hero-content {
+    margin: var(--spacing-lg);
+    padding: var(--spacing-2xl) var(--spacing-xl);
   }
 
   /* About Section */
@@ -36,16 +41,51 @@
     gap: var(--spacing-2xl);
   }
 
-  /* Product Grid */
+  /* Product Grid - Maintain luxury spacing */
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+  }
+
+  /* Reduce dramatic transforms on tablet */
+  .products-grid .product-card:nth-child(2n),
+  .products-grid .product-card:nth-child(3n),
+  .products-grid .product-card:nth-child(4n) {
+    transform: translateY(10px);
+  }
+
+  .products-grid .product-card:nth-child(2n):hover {
+    transform: translateY(-5px) rotate(-0.3deg);
+  }
+
+  .products-grid .product-card:nth-child(3n):hover {
+    transform: translateY(-15px) rotate(0.5deg);
+  }
+
+  .products-grid .product-card:nth-child(4n):hover {
+    transform: translateY(-5px) rotate(-0.2deg);
   }
 
   /* Order Layout */
   .order-layout {
     grid-template-columns: 1fr 350px;
     gap: var(--spacing-2xl);
+  }
+
+  /* Enhanced touch targets */
+  .btn {
+    padding: var(--spacing-md) var(--spacing-xl);
+    min-height: 48px;
+  }
+
+  .quantity-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cart-btn {
+    padding: var(--spacing-md) var(--spacing-lg);
+    min-height: 48px;
   }
 
   /* Product Modal */
@@ -163,8 +203,19 @@
 
   /* Product Grid */
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  /* Mobile Styles - Remove dramatic transforms for performance */
+  .products-grid .product-card:nth-child(2n),
+  .products-grid .product-card:nth-child(3n),
+  .products-grid .product-card:nth-child(4n) {
+    transform: translateY(0);
+  }
+
+  .products-grid .product-card:hover {
+    transform: translateY(-5px) !important;
   }
 
   /* Product Cards */
