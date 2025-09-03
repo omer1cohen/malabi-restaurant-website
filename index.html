@@ -12,173 +12,122 @@
     <link rel="alternate icon" href="favicon.ico">
     
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'malabi': {
-                            'cream': '#FFF8F3',
-                            'rose': '#FFE4E8', 
-                            'pistachio': '#D6E8D0',
-                            'gold': '#FFD87A',
-                            'pomegranate': '#C94C6D',
-                            'cocoa': '#4A3728',
-                            'charcoal': '#5A5A5A'
-                        }
-                    },
-                    fontFamily: {
-                        'hebrew': ['Heebo', 'sans-serif'],
-                        'display': ['Playfair Display', 'serif'],
-                        'inter': ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="assets/css/dist.css">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- JavaScript -->
+    <script src="assets/js/carousel.js" defer></script>
+    <script src="assets/js/menu-tabs.js" defer></script>
+    
     <!-- Custom Styles -->
     <style>
-        body { font-family: 'Heebo', sans-serif; }
+        body { 
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 251, 254, 1) 50%, rgba(254, 242, 242, 0.3) 100%);
+        }
         .font-hebrew { font-family: 'Heebo', sans-serif; }
         .font-display { font-family: 'Playfair Display', serif; }
         .font-inter { font-family: 'Inter', sans-serif; }
+        .grain-texture {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGZpbHRlciBpZD0ibm9pc2UiPjxmZVR1cmJ1bGVuY2UgdHlwZT0idHVyYnVsZW5jZSIgYmFzZUZyZXF1ZW5jeT0iMC45IiBudW1PY3RhdmVzPSI0IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+        }
+        .backdrop-blur-glass {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
+        }
     </style>
 </head>
 <body class="bg-malabi-cream font-hebrew antialiased">
     <!-- Header -->
-    <header class="bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-malabi-rose/20">
-        <nav class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <h1 class="text-2xl md:text-3xl font-display font-bold text-malabi-cocoa">
-                        מיסטר מלבי
-                    </h1>
-                </div>
-                
-                <!-- Navigation Menu -->
-                <div class="hidden md:flex items-center space-x-8 space-x-reverse">
-                    <a href="index.html" class="text-malabi-cocoa font-medium hover:text-malabi-pomegranate transition-colors duration-300 border-b-2 border-malabi-pomegranate">בית</a>
-                    <a href="menu.html" class="text-malabi-charcoal font-medium hover:text-malabi-pomegranate transition-colors duration-300">תפריט</a>
-                    <a href="#about" class="text-malabi-charcoal font-medium hover:text-malabi-pomegranate transition-colors duration-300">אודות</a>
-                    <a href="#contact" class="text-malabi-charcoal font-medium hover:text-malabi-pomegranate transition-colors duration-300">צור קשר</a>
-                </div>
-                
-                <!-- Cart Button -->
-                <div class="flex items-center">
-                    <button onclick="toggleCart()" class="relative bg-malabi-gold hover:bg-malabi-gold/80 text-malabi-cocoa px-4 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl">
-                        <div class="flex items-center space-x-2 space-x-reverse">
-                            <span class="text-xl">🛒</span>
-                            <span class="font-medium">עגלה</span>
-                            <span id="cartCount" class="bg-malabi-pomegranate text-white text-xs px-2 py-1 rounded-full">0</span>
-                        </div>
-                    </button>
-                </div>
+    <header class="sticky top-0 z-40 backdrop-blur bg-white/70 border-b border-rose-100/60">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <h1 class="font-semibold tracking-tight text-2xl sm:text-3xl text-zinc-900">
+                    מיסטר מלבי
+                </h1>
             </div>
             
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden mt-4">
-                <button class="w-full text-center py-2 text-malabi-charcoal">תפריט ☰</button>
+            <!-- Navigation Menu -->
+            <div class="hidden md:flex items-center space-x-6 space-x-reverse">
+                <a href="index.html" class="text-zinc-900 font-medium hover:text-malabi-600 transition-colors duration-300">בית</a>
+                <a href="menu.html" class="text-zinc-600 font-medium hover:text-malabi-600 transition-colors duration-300">תפריט</a>
+                <a href="#about" class="text-zinc-600 font-medium hover:text-malabi-600 transition-colors duration-300">אודות</a>
+                <a href="#contact" class="text-zinc-600 font-medium hover:text-malabi-600 transition-colors duration-300">צור קשר</a>
             </div>
-        </nav>
+            
+            <!-- Cart Button -->
+            <div class="flex items-center">
+                <button onclick="toggleCart()" class="relative bg-malabi-400 hover:bg-malabi-600 text-white px-4 py-2 rounded-full transition-all duration-300 shadow-sm hover:shadow-md active:scale-[.98]">
+                    <div class="flex items-center space-x-2 space-x-reverse">
+                        <span class="text-lg">🛒</span>
+                        <span class="font-medium">עגלה</span>
+                        <span id="cartCount" class="bg-white/20 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full font-semibold">0</span>
+                    </div>
+                </button>
+            </div>
+        </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-            <!-- Background Image -->
-            <div class="absolute inset-0 z-0">
-                <img src="assets/images/about-malabi.jpg" alt="מיסטר מלבי - מתוקים מזרח תיכוניים" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/50"></div>
-            </div>
-            
-            <!-- Hero Content -->
-            <div class="relative z-10 container mx-auto px-4 text-center text-white">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-                        <span class="bg-gradient-to-r from-malabi-gold to-malabi-rose bg-clip-text text-transparent">
-                            מיסטר מלבי
-                        </span>
-                    </h2>
-                    <p class="text-xl md:text-2xl lg:text-3xl font-light mb-6 text-malabi-cream">
-                        אומנות הקרמיות המזרח תיכונית
-                    </p>
-                    <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed text-white/90">
-                        כל כפית מספרת סיפור של מסורת עתיקה, חלב המתחבר לוורדים, ופיסטוקים שמתפוררים כחלום
-                    </p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="menu.html" class="group bg-gradient-to-r from-malabi-gold to-malabi-rose text-malabi-cocoa font-bold py-4 px-8 rounded-full text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                            <span class="flex items-center justify-center space-x-2 space-x-reverse">
-                                <span>התחילו את המסע הטעמים</span>
-                                <span class="group-hover:rotate-12 transition-transform">✨</span>
-                            </span>
-                        </a>
-                        <a href="#about" class="border-2 border-white/80 text-white font-medium py-4 px-8 rounded-full text-lg hover:bg-white/10 transition-all duration-300">
-                            למדו עלינו
-                        </a>
-                    </div>
+        <!-- Premium Hero Section -->
+        <section class="relative overflow-hidden rounded-3xl mx-4 sm:mx-6 lg:mx-8 mt-6 bg-gradient-to-b from-rose-50 to-white ring-1 ring-rose-100">
+            <div class="px-6 py-16 text-center">
+                <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-zinc-900">מיסטר מלבי</h1>
+                <p class="mt-4 max-w-2xl mx-auto text-zinc-600">מלאבי בעבודת יד, משלוח מהיר ואהבה בקערה</p>
+                <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <a href="#menu" class="px-5 py-3 rounded-full bg-malabi-400 hover:bg-malabi-600 text-white active:scale-[.98] transition-all duration-300">התחל הזמנה</a>
+                    <a href="#about" class="px-5 py-3 rounded-full border border-rose-200 bg-white text-zinc-700 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">צפה בתפריט</a>
                 </div>
-            </div>
-            
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-                <div class="flex flex-col items-center">
-                    <span class="text-sm mb-2">גללו למטה</span>
-                    <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-                        <div class="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
-                    </div>
-                </div>
+                <div class="mt-4 text-[13px] text-zinc-500">⭐️⭐️⭐️⭐️⭐️ מבוסס על 1,248 ביקורות</div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 bg-gradient-to-b from-malabi-cream to-white">
+        <section id="about" class="py-24 bg-gradient-to-b from-white via-rose-50/20 to-white">
             <div class="container mx-auto px-4">
                 <div class="max-w-7xl mx-auto">
-                    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
                         <!-- Text Content -->
-                        <div class="space-y-8">
-                            <div class="space-y-4">
-                                <h3 class="font-display text-4xl md:text-5xl font-bold text-malabi-cocoa leading-tight">
+                        <div class="space-y-8 animate-slide-up">
+                            <div class="space-y-6">
+                                <h3 class="font-display text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
                                     מסע חושי במזרח התיכון
                                 </h3>
-                                <div class="w-24 h-1 bg-gradient-to-r from-malabi-pomegranate to-malabi-gold"></div>
+                                <div class="w-24 h-1.5 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full"></div>
                             </div>
                             
-                            <div class="space-y-6 text-malabi-charcoal leading-relaxed">
-                                <p class="text-lg">
+                            <div class="space-y-6 text-gray-700 leading-relaxed">
+                                <p class="text-lg font-light">
                                     בכל כף של המלאבי שלנו מתגלה סיפור של דורות - טקסטורה של משי נוזלי שנמס על הלשון, ארומה של גן ורדים שמתערבבת עם זיכרונות ילדות, וטעם של פיסטוקים שנקלים בעדינות עד לשחרור הטעם העמוק שלהם.
                                 </p>
-                                <p class="text-lg">
+                                <p class="text-lg font-light">
                                     אנו בוחרים כל רכיב במסירות אומן - חלב שזוהה מרגעי הבוקר הראשונים, סירופ ורדים שמזוקק ביד מכתרי פרחים נבחרים, ופיסטוקים שמגיעים מהחוות המובחרות של הארץ הקדושה.
                                 </p>
                             </div>
                             
                             <!-- Features -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
-                                <div class="flex items-start space-x-3 space-x-reverse">
-                                    <div class="bg-malabi-rose p-3 rounded-full">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
+                                <div class="flex items-start space-x-4 space-x-reverse bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                                    <div class="bg-gradient-to-br from-rose-100 to-pink-100 p-4 rounded-xl">
                                         <span class="text-2xl">🌹</span>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-malabi-cocoa mb-1">סירופ ורדים טבעי</h4>
-                                        <p class="text-sm text-malabi-charcoal">מזוקק ביד מפרחי ורדים נבחרים</p>
+                                        <h4 class="font-semibold text-gray-900 mb-2 text-lg">סירופ ורדים טבעי</h4>
+                                        <p class="text-sm text-gray-600 font-light leading-relaxed">מזוקק ביד מפרחי ורדים נבחרים המביאים ארומה עדינה ומקורית</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start space-x-3 space-x-reverse">
-                                    <div class="bg-malabi-pistachio p-3 rounded-full">
+                                <div class="flex items-start space-x-4 space-x-reverse bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                                    <div class="bg-gradient-to-br from-green-100 to-emerald-100 p-4 rounded-xl">
                                         <span class="text-2xl">🌰</span>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-malabi-cocoa mb-1">פיסטוקים איכותיים</h4>
-                                        <p class="text-sm text-malabi-charcoal">מהחוות המובחרות</p>
+                                        <h4 class="font-semibold text-gray-900 mb-2 text-lg">פיסטוקים איכותיים</h4>
+                                        <p class="text-sm text-gray-600 font-light leading-relaxed">מהחוות המובחרות, קלויים בעדינות לטעם עמוק ומושלם</p>
                                     </div>
                                 </div>
                             </div>
@@ -204,87 +153,307 @@
 
 
         <!-- Featured Products Section -->
-        <section class="py-20 bg-white">
+        <section class="py-24 bg-gradient-to-b from-white via-gray-50/50 to-white">
             <div class="container mx-auto px-4">
                 <div class="max-w-7xl mx-auto">
                     <!-- Section Header -->
-                    <div class="text-center mb-16">
-                        <h3 class="font-display text-4xl md:text-5xl font-bold text-malabi-cocoa mb-4">
+                    <div class="text-center mb-20 animate-fade-in">
+                        <h3 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                             המומלצים שלנו
                         </h3>
-                        <div class="w-24 h-1 bg-gradient-to-r from-malabi-pomegranate to-malabi-gold mx-auto mb-6"></div>
-                        <p class="text-lg text-malabi-charcoal max-w-2xl mx-auto">
-                            גלו את המבחר המיוחד של המלאבי שלנו - כל אחד מהם מספר סיפור טעמים ייחודי
+                        <div class="w-24 h-1.5 bg-gradient-to-r from-malabi-400 to-malabi-600 rounded-full mx-auto mb-8"></div>
+                        <p class="text-lg text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
+                            גלו את המבחר המיוחד של המלאבי שלנו - כל אחד מהם מספר סיפור טעמים ייחודי. כל מוצר מיוצר באהבה ובמסירות עם חומרי גלם איכותיים
                         </p>
                     </div>
+                    <!-- Trust Signal -->
+                    <div class="text-center mb-12">
+                        <div class="inline-flex items-center gap-6 bg-white/90 backdrop-blur-md px-8 py-5 rounded-3xl shadow-lg border border-rose-100/50">
+                            <div class="flex items-center gap-3 text-green-600">
+                                <span class="text-xl">✓</span>
+                                <span class="text-sm font-semibold">כשר למהדרין</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-blue-600">
+                                <span class="text-xl">🚚</span>
+                                <span class="text-sm font-semibold">משלוח חינם מעל 150₪</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-rose-600">
+                                <span class="text-xl">⭐</span>
+                                <span class="text-sm font-semibold">דירוג 5 כוכבים</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Category Tabs -->
+                    <div class="flex justify-center mb-12">
+                        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-2 shadow-lg border border-rose-100/50">
+                            <div class="flex flex-wrap justify-center gap-2" role="tablist">
+                                <button class="product-tab active" data-category="all" role="tab" aria-selected="true">
+                                    הכל
+                                </button>
+                                <button class="product-tab" data-category="classic" role="tab" aria-selected="false">
+                                    קלאסי
+                                </button>
+                                <button class="product-tab" data-category="premium" role="tab" aria-selected="false">
+                                    פרימיום
+                                </button>
+                                <button class="product-tab" data-category="vegan" role="tab" aria-selected="false">
+                                    טבעוני
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Products Grid -->
-                    <div id="featuredProducts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <div class="loading-products">טוען מוצרים...</div>
-                    <!-- Products will be loaded by JavaScript -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="assets/images/products/malabi-classic.jpg" alt="מלאבי קלאسי" loading="lazy" 
-                                 onerror="this.src='assets/images/placeholder-malabi.svg'">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">מלאבי קלאסי</h4>
-                            <p class="product-description">נגיעת משי נוזלית שמתמוססת בעדינות, מעטרת בסירופ ורדים ארומטי ופיסטוקים קלויים שמתפוררים כבהרת זהב. זהו הטעם הנקי של מסורת.</p>
-                            <div class="product-price">₪16</div>
-                            <div class="product-actions">
-                                <button class="add-to-cart-btn">קנה עכשיו</button>
+                    <div class="products-grid-container">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in" id="products-grid">
+                            
+                            <!-- Product 1: מלאבי קלאסי -->
+                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="classic all">
+                                <!-- Trust Badge -->
+                                <div class="absolute top-4 right-4 z-10">
+                                    <span class="bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                        הכי פופולרי
+                                    </span>
+                                </div>
+                                
+                                <!-- Product Image -->
+                                <div class="relative bg-gradient-to-br from-rose-50 to-pink-50 h-64 overflow-hidden">
+                                    <img src="assets/images/products/malabi-classic.jpg" 
+                                         alt="מלאבי קלאסי" 
+                                         loading="lazy"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                         onerror="this.src='assets/images/placeholder-malabi.svg'">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+
+                                <!-- Product Info -->
+                                <div class="p-6">
+                                    <h4 class="text-xl font-bold text-gray-900 mb-3 text-center">מלאבי קלאסי</h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed mb-4 text-center line-clamp-3">
+                                        נגיעת משי נוזלית שמתמוססת בעדינות, מעטרת בסירופ ורדים ארומטי ופיסטוקים קלויים שמתפוררים כבהרת זהב. זהו הטעם הנקי של מסורת.
+                                    </p>
+                                    
+                                    <!-- Price -->
+                                    <div class="flex items-center justify-center mb-6">
+                                        <div class="bg-gradient-to-r from-malabi-400/10 to-malabi-600/10 rounded-full px-6 py-3 border border-malabi-400/20">
+                                            <span class="text-2xl font-bold text-malabi-600">16</span>
+                                            <span class="text-gray-600 mr-1">₪</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add to Cart Button -->
+                                    <button class="w-full bg-gradient-to-r from-malabi-400 to-malabi-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-malabi-500 hover:to-malabi-700 transform hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
+                                            data-product-id="malabi-classic">
+                                        הוסף
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Product 2: מלאבי שוקולד -->
+                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="premium all">
+                                <!-- Trust Badge -->
+                                <div class="absolute top-4 right-4 z-10">
+                                    <span class="bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                        חדש!
+                                    </span>
+                                </div>
+                                
+                                <!-- Product Image -->
+                                <div class="relative bg-gradient-to-br from-amber-50 to-orange-50 h-64 overflow-hidden">
+                                    <img src="assets/images/products/malabi-chocolate.jpg" 
+                                         alt="מלאבי שוקולד" 
+                                         loading="lazy"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                         onerror="this.src='assets/images/placeholder-malabi.svg'">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+
+                                <!-- Product Info -->
+                                <div class="p-6">
+                                    <h4 class="text-xl font-bold text-gray-900 mb-3 text-center">מלאבי שוקולד</h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed mb-4 text-center line-clamp-3">
+                                        חוויה של עושר מוחלט - קרמיות חלבית מתחברת לשוקולד בלגי כהה שנמס באיטיות, ומעוטרת בשבבי קקאו עדינים שיוצרים סימפוניה של טעמים.
+                                    </p>
+                                    
+                                    <!-- Price -->
+                                    <div class="flex items-center justify-center mb-6">
+                                        <div class="bg-gradient-to-r from-malabi-400/10 to-malabi-600/10 rounded-full px-6 py-3 border border-malabi-400/20">
+                                            <span class="text-2xl font-bold text-malabi-600">18</span>
+                                            <span class="text-gray-600 mr-1">₪</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add to Cart Button -->
+                                    <button class="w-full bg-gradient-to-r from-malabi-400 to-malabi-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-malabi-500 hover:to-malabi-700 transform hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
+                                            data-product-id="malabi-chocolate">
+                                        הוסף
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Product 3: מלאבי פיסטוק -->
+                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="premium all">
+                                <!-- Product Image -->
+                                <div class="relative bg-gradient-to-br from-green-50 to-emerald-50 h-64 overflow-hidden">
+                                    <img src="assets/images/products/malabi-pistachio.jpg" 
+                                         alt="מלאבי פיסטוק" 
+                                         loading="lazy"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                         onerror="this.src='assets/images/placeholder-malabi.svg'">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+
+                                <!-- Product Info -->
+                                <div class="p-6">
+                                    <h4 class="text-xl font-bold text-gray-900 mb-3 text-center">מלאבי פיסטוק</h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed mb-4 text-center line-clamp-3">
+                                        יצירת אמנות ירקרקה שבה הפיסטוק המופלא משתלב עם הקרמיות החלבית, יוצר נגיעת טעם עמוקה ועשירה המכוסה בפיסטוקים קלויים טריים.
+                                    </p>
+                                    
+                                    <!-- Price -->
+                                    <div class="flex items-center justify-center mb-6">
+                                        <div class="bg-gradient-to-r from-malabi-400/10 to-malabi-600/10 rounded-full px-6 py-3 border border-malabi-400/20">
+                                            <span class="text-2xl font-bold text-malabi-600">20</span>
+                                            <span class="text-gray-600 mr-1">₪</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add to Cart Button -->
+                                    <button class="w-full bg-gradient-to-r from-malabi-400 to-malabi-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-malabi-500 hover:to-malabi-700 transform hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
+                                            data-product-id="malabi-pistachio">
+                                        הוסף
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Product 4: חבילה משפחתית -->
+                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="classic all">
+                                <!-- Trust Badge -->
+                                <div class="absolute top-4 right-4 z-10">
+                                    <span class="bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                        חסכון!
+                                    </span>
+                                </div>
+                                
+                                <!-- Product Image -->
+                                <div class="relative bg-gradient-to-br from-purple-50 to-pink-50 h-64 overflow-hidden">
+                                    <img src="assets/images/products/malabi-family-pack.jpg" 
+                                         alt="חבילה משפחתית" 
+                                         loading="lazy"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                         onerror="this.src='assets/images/placeholder-malabi.svg'">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+
+                                <!-- Product Info -->
+                                <div class="p-6">
+                                    <h4 class="text-xl font-bold text-gray-900 mb-3 text-center">חבילה משפחתית - 6 יחידות</h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed mb-4 text-center line-clamp-3">
+                                        אוסף של חוויות חושיות משותפות - שישה גביעי מלאבי קלאסי המיועדים ליצור רגעי הנאה משפחתיים, לחגיגות מתוקות ולזיכרונות בלתי נשכחים.
+                                    </p>
+                                    
+                                    <!-- Price -->
+                                    <div class="flex items-center justify-center mb-6">
+                                        <div class="bg-gradient-to-r from-malabi-400/10 to-malabi-600/10 rounded-full px-6 py-3 border border-malabi-400/20">
+                                            <span class="text-2xl font-bold text-malabi-600">85</span>
+                                            <span class="text-gray-600 mr-1">₪</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add to Cart Button -->
+                                    <button class="w-full bg-gradient-to-r from-malabi-400 to-malabi-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-malabi-500 hover:to-malabi-700 transform hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
+                                            data-product-id="malabi-family-pack">
+                                        הוסף
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Product 5: מלאבי טבעוני -->
+                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="vegan all">
+                                <!-- Trust Badge -->
+                                <div class="absolute top-4 right-4 z-10">
+                                    <span class="bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                        טבעוני
+                                    </span>
+                                </div>
+                                
+                                <!-- Product Image -->
+                                <div class="relative bg-gradient-to-br from-green-50 to-lime-50 h-64 overflow-hidden">
+                                    <img src="assets/images/products/malabi-classic.jpg" 
+                                         alt="מלאבי טבעוני" 
+                                         loading="lazy"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                         onerror="this.src='assets/images/placeholder-malabi.svg'">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+
+                                <!-- Product Info -->
+                                <div class="p-6">
+                                    <h4 class="text-xl font-bold text-gray-900 mb-3 text-center">מלאבי טבעוני</h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed mb-4 text-center line-clamp-3">
+                                        הגרסה הטבעונית של המלאבי הקלאסי שלנו, עשויה מחלב קוקוס איכותי ומרכיבים טבעיים לחלוטין. טעם אותנטי ללא תוספים מן החי.
+                                    </p>
+                                    
+                                    <!-- Price -->
+                                    <div class="flex items-center justify-center mb-6">
+                                        <div class="bg-gradient-to-r from-malabi-400/10 to-malabi-600/10 rounded-full px-6 py-3 border border-malabi-400/20">
+                                            <span class="text-2xl font-bold text-malabi-600">18</span>
+                                            <span class="text-gray-600 mr-1">₪</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add to Cart Button -->
+                                    <button class="w-full bg-gradient-to-r from-malabi-400 to-malabi-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-malabi-500 hover:to-malabi-700 transform hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
+                                            data-product-id="malabi-vegan">
+                                        הוסף
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Product 6: מלאבי תמרים -->
+                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="premium all">
+                                <!-- Product Image -->
+                                <div class="relative bg-gradient-to-br from-yellow-50 to-amber-50 h-64 overflow-hidden">
+                                    <img src="assets/images/products/malabi-classic.jpg" 
+                                         alt="מלאבי תמרים" 
+                                         loading="lazy"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                         onerror="this.src='assets/images/placeholder-malabi.svg'">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+
+                                <!-- Product Info -->
+                                <div class="p-6">
+                                    <h4 class="text-xl font-bold text-gray-900 mb-3 text-center">מלאבי תמרים</h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed mb-4 text-center line-clamp-3">
+                                        שילוב מושלם של קרמיות עדינה ומתיקות טבעית של תמרים מג'הול איכותיים. חוויה עשירה וחגיגית שמזכירה את טעמי המזרח התיכון האותנטיים.
+                                    </p>
+                                    
+                                    <!-- Price -->
+                                    <div class="flex items-center justify-center mb-6">
+                                        <div class="bg-gradient-to-r from-malabi-400/10 to-malabi-600/10 rounded-full px-6 py-3 border border-malabi-400/20">
+                                            <span class="text-2xl font-bold text-malabi-600">22</span>
+                                            <span class="text-gray-600 mr-1">₪</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add to Cart Button -->
+                                    <button class="w-full bg-gradient-to-r from-malabi-400 to-malabi-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-malabi-500 hover:to-malabi-700 transform hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
+                                            data-product-id="malabi-dates">
+                                        הוסף
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="assets/images/products/malabi-chocolate.jpg" alt="מלאבי שוקולד" loading="lazy" 
-                                 onerror="this.src='assets/images/placeholder-malabi.svg'">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">מלאבי שוקולד</h4>
-                            <p class="product-description">חוויה של עושר מוחלט - קרמיות חלבית מתחברת לשוקולד בלגי כהה שנמס באיטיות, ומעוטרת בשבבי קקאו עדינים שיוצרים סימפוניה של טעמים.</p>
-                            <div class="product-price">₪18</div>
-                            <div class="product-actions">
-                                <button class="add-to-cart-btn">קנה עכשיו</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="assets/images/products/malabi-pistachio.jpg" alt="מלאבי פיסטוק" loading="lazy" 
-                                 onerror="this.src='assets/images/placeholder-malabi.svg'">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">מלאבי פיסטוק</h4>
-                            <p class="product-description">יצירת אמנות ירקרקה שבה הפיסטוק המופלא משתלב עם הקרמיות החלבית, יוצר נגיעת טעם עמוקה ועשירה המכוסה בפיסטוקים קלויים טריים.</p>
-                            <div class="product-price">₪20</div>
-                            <div class="product-actions">
-                                <button class="add-to-cart-btn">קנה עכשיו</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="assets/images/products/malabi-family-pack.jpg" alt="חבילה משפחתית" loading="lazy" 
-                                 onerror="this.src='assets/images/placeholder-malabi.svg'">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">חבילה משפחתית - 6 יחידות</h4>
-                            <p class="product-description">אוסף של חוויות חושיות משותפות - שישה גביעי מלאבי קלאסי המיועדים ליצור רגעי הנאה משפחתיים, לחגיגות מתוקות ולזיכרונות בלתי נשכחים.</p>
-                            <div class="product-price">₪85</div>
-                            <div class="product-actions">
-                                <button class="add-to-cart-btn">קנה עכשיו</button>
-                            </div>
-                        </div>
-                    </div>
                     
                     <!-- View All Products Button -->
-                    <div class="text-center mt-12">
-                        <a href="menu.html" class="inline-block bg-transparent border-2 border-malabi-pomegranate text-malabi-pomegranate hover:bg-malabi-pomegranate hover:text-white px-8 py-3 rounded-full font-medium transition-all duration-300">
-                            צפו בכל המוצרים
+                    <div class="text-center mt-16">
+                        <a href="menu.html" class="inline-flex items-center gap-3 bg-white border-2 border-malabi-400 hover:border-malabi-600 text-malabi-600 hover:text-malabi-700 hover:bg-malabi-50 px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105">
+                            <span>צפו בכל המוצרים</span>
+                            <span class="transform transition-transform group-hover:translate-x-1">←</span>
                         </a>
                     </div>
                 </div>
@@ -292,68 +461,103 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-malabi-cocoa text-white py-16">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    <!-- Brand Section -->
-                    <div class="text-center md:text-right">
-                        <h4 class="font-display text-2xl font-bold text-malabi-gold mb-4">מיסטר מלבי</h4>
-                        <p class="text-malabi-cream leading-relaxed mb-4">
-                            המתוקים המזרח תיכוניים הטובים ביותר
-                        </p>
-                        <div class="flex justify-center md:justify-start space-x-4 space-x-reverse">
-                            <span class="text-2xl">🍮</span>
-                            <span class="text-2xl">🌹</span>
-                            <span class="text-2xl">🌰</span>
+    <!-- Enhanced Footer -->
+    <footer class="bg-zinc-900 text-white py-16">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                
+                <!-- Order Section -->
+                <div>
+                    <h4 class="text-xl font-semibold text-malabi-400 mb-6">הזמנה</h4>
+                    <div class="space-y-4 text-zinc-300">
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <span class="text-lg">🛒</span>
+                            <a href="#menu" class="hover:text-malabi-400 transition-colors">הזמינו אונליין</a>
+                        </div>
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <span class="text-lg">💬</span>
+                            <a href="https://wa.me/972501234567" class="hover:text-green-400 transition-colors">WhatsApp: 050-123-4567</a>
+                        </div>
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <span class="text-lg">📞</span>
+                            <a href="tel:+972501234567" class="hover:text-malabi-400 transition-colors">050-123-4567</a>
                         </div>
                     </div>
-                    
-                    <!-- Contact Section -->
-                    <div class="text-center">
-                        <h4 class="font-display text-xl font-semibold text-malabi-gold mb-4">יצירת קשר</h4>
-                        <div class="space-y-3 text-malabi-cream">
-                            <div class="flex items-center justify-center space-x-2 space-x-reverse">
-                                <span>📞</span>
-                                <span>050-123-4567</span>
-                            </div>
-                            <div class="flex items-center justify-center space-x-2 space-x-reverse">
-                                <span>💬</span>
-                                <span>WhatsApp: 050-123-4567</span>
+                    <div class="mt-6 p-3 bg-green-500/10 rounded-lg border border-green-500/20">
+                        <p class="text-sm text-green-400 font-medium">🚚 משלוח חינם מעל 150₪</p>
+                    </div>
+                </div>
+                
+                <!-- Visit Section -->
+                <div>
+                    <h4 class="text-xl font-semibold text-malabi-400 mb-6">בקרו אותנו</h4>
+                    <div class="space-y-4 text-zinc-300">
+                        <div class="flex items-start space-x-3 space-x-reverse">
+                            <span class="text-lg mt-0.5">📍</span>
+                            <div>
+                                <p>רחוב הרצל 123</p>
+                                <p>תל אביב-יפו</p>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Delivery Section -->
-                    <div class="text-center md:text-left">
-                        <h4 class="font-display text-xl font-semibold text-malabi-gold mb-4">אזורי משלוח</h4>
-                        <div class="text-malabi-cream space-y-2">
-                            <div class="flex items-center justify-center md:justify-start space-x-2 space-x-reverse">
-                                <span>📍</span>
-                                <span>תל אביב</span>
+                        <div class="flex items-start space-x-3 space-x-reverse">
+                            <span class="text-lg mt-0.5">🕒</span>
+                            <div>
+                                <p>א׳-ה׳: 08:00-22:00</p>
+                                <p>ו׳-ש׳: 08:00-23:00</p>
                             </div>
-                            <div class="flex items-center justify-center md:justify-start space-x-2 space-x-reverse">
-                                <span>📍</span>
-                                <span>רמת גן</span>
-                            </div>
-                            <div class="flex items-center justify-center md:justify-start space-x-2 space-x-reverse">
-                                <span>📍</span>
-                                <span>גבעתיים</span>
-                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <span class="text-lg">🅿️</span>
+                            <span>חניה בחינם</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Bottom Bar -->
-                <div class="border-t border-malabi-charcoal pt-8 text-center">
-                    <p class="text-malabi-cream/80">
-                        © 2024 מיסטר מלבי. כל הזכויות שמורות. נוצר באהבה עבור חובבי המלאבי
-                    </p>
+                <!-- Contact Section -->
+                <div>
+                    <h4 class="text-xl font-semibold text-malabi-400 mb-6">צור קשר</h4>
+                    <div class="space-y-4 text-zinc-300">
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <span class="text-lg">📧</span>
+                            <a href="mailto:info@malabipalace.co.il" class="hover:text-malabi-400 transition-colors">info@malabipalace.co.il</a>
+                        </div>
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <span class="text-lg">📱</span>
+                            <span>עדכונים בווטסאפ</span>
+                        </div>
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <span class="text-lg">⭐</span>
+                            <span>דירוג 4.9/5</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex space-x-3 space-x-reverse">
+                        <span class="text-2xl">🍮</span>
+                        <span class="text-2xl">🌹</span>
+                        <span class="text-2xl">🌰</span>
+                    </div>
                 </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="border-t border-zinc-700 pt-8 text-center">
+                <p class="text-zinc-400 text-sm">© 2024 מיסטר מלבי. כל הזכויות שמורות. מלאבי בעבודת יד מאז 1995 🍮</p>
             </div>
         </div>
     </footer>
+
+    <!-- Sticky Cart Bar (Mobile) -->
+    <div id="stickyCartBar" class="fixed inset-x-0 bottom-0 z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 lg:hidden hidden">
+        <div class="rounded-full shadow-lg bg-zinc-900 text-white px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <span class="text-sm" id="stickyCartCount">2 פריטים</span>
+                <span class="text-zinc-400">•</span>
+                <span class="text-sm font-semibold" id="stickyCartTotal">₪34</span>
+            </div>
+            <button onclick="toggleCart()" class="px-4 py-2 rounded-full bg-malabi-400 hover:bg-malabi-600 text-sm font-medium active:scale-[.98] transition-all duration-200">
+                להמשך הזמנה
+            </button>
+        </div>
+    </div>
 
     <!-- Cart Sidebar -->
     <div id="cartSidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
