@@ -10,8 +10,11 @@ Malabi Palace is a static e-commerce website for a Middle Eastern dessert restau
 
 ### Local Development Server
 ```bash
-# Start development server with no-cache headers
+# Primary development server (recommended - with no-cache headers)
 python server.py
+
+# Vite development server (with hot reload)
+npm run dev
 
 # Alternative servers (if Python unavailable)
 python -m http.server 8000
@@ -19,10 +22,21 @@ npx serve .
 php -S localhost:8000
 ```
 
-Access at: http://localhost:8000
+Access at: http://localhost:8000 (Python server) or http://localhost:3000 (Vite)
 
-### No Build Process
-This is a static website with no build pipeline. Changes to HTML/CSS/JS are immediately available after browser refresh.
+### Build Process
+```bash
+# Build for production (creates dist/ directory)
+npm run build
+
+# Build and preview production build
+npm run build && npm run preview
+
+# Build Tailwind CSS only
+npm run build:css
+```
+
+**IMPORTANT**: Always run `npm run build` after making changes and before committing to ensure there are no build errors. Only commit and push if build succeeds without errors.
 
 ## Architecture Overview
 
@@ -38,6 +52,7 @@ assets/js/
 ├── app.js          # Global state, configuration, utilities
 ├── cart.js         # Shopping cart management and localStorage
 ├── menu.js         # Product display and filtering
+├── menu-tabs.js    # Tab navigation and filtering for menu page
 ├── order.js        # Order form validation and processing
 └── whatsapp.js     # WhatsApp integration and message formatting
 ```
@@ -53,10 +68,16 @@ Critical settings in `assets/js/app.js`:
 ```javascript
 const CONFIG = {
     WHATSAPP_BUSINESS_NUMBER: "972501234567", // Update for production
+    SITE_URL: "https://malabipalace.co.il",   // Site URL for sharing
     DELIVERY_FEE: 10,
     DELIVERY_AREAS: ["תל אביב", "רמת גן", "גבעתיים"]
 };
 ```
+
+### Build Configuration
+- **Vite**: Modern build tool with hot reload (vite.config.js)
+- **Tailwind CSS**: Utility-first CSS framework (tailwind.config.js)
+- **PostCSS**: CSS processing pipeline (postcss.config.js)
 
 ## Product Management
 
@@ -141,3 +162,44 @@ Includes customer details, itemized order, totals, delivery info, and order ID f
 
 ### Modifying Delivery Areas
 Update `DELIVERY_AREAS` array in `assets/js/app.js` for service area changes.
+
+## CSS Architecture
+
+### Styling Structure
+```
+assets/css/
+├── main.css        # Core styles, variables, base components
+├── components.css  # Reusable UI components  
+├── responsive.css  # Mobile responsiveness and breakpoints
+├── tailwind.css    # Tailwind CSS imports
+└── dist.css        # Generated Tailwind output (build artifact)
+```
+
+### Custom Tailwind Theme
+The project extends Tailwind CSS with:
+- **Custom Colors**: Malabi-themed color palette including cream, rose, pistachio, gold
+- **Hebrew Fonts**: Heebo font family for RTL Hebrew support
+- **Custom Animations**: Luxury animations (fade-in, slide-up, shimmer effects)
+- **Box Shadows**: Luxury shadow effects for premium look
+
+## Development Workflow
+
+### Making Changes
+1. Start development server: `python server.py` or `npm run dev`
+2. Make your changes to HTML/CSS/JS files
+3. Test functionality thoroughly, especially:
+   - Cart operations and localStorage persistence
+   - WhatsApp integration and fallbacks
+   - Hebrew form validation
+   - Responsive design on mobile devices
+4. **CRITICAL**: Run `npm run build` to ensure no build errors
+5. Only if build succeeds: `git add .`, `git commit`, `git push`
+
+### Testing Checklist
+- [ ] Products load and display correctly
+- [ ] Cart add/remove operations work
+- [ ] Cart persists between page reloads
+- [ ] Order form validates Hebrew inputs properly
+- [ ] WhatsApp integration opens correctly
+- [ ] Site works on mobile devices
+- [ ] Images load with proper fallbacks
