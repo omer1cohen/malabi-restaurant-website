@@ -27,7 +27,25 @@
     <style>
         body { 
             font-family: 'Heebo', sans-serif;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 251, 254, 1) 50%, rgba(254, 242, 242, 0.3) 100%);
+            background: 
+                url('assets/images/pink-watercolor-bg.png') no-repeat center center fixed,
+                linear-gradient(180deg, rgba(255, 192, 203, 0.1) 0%, rgba(255, 182, 193, 0.15) 50%, rgba(255, 182, 193, 0.2) 100%);
+            background-size: cover;
+            min-height: 100vh;
+        }
+        
+        /* VERY OBVIOUS DEBUG: This should definitely be visible */
+        html {
+            background: #ff69b4 !important;
+            min-height: 100%;
+        }
+        
+        /* Force pink on body too */
+        body {
+            background: 
+                url('assets/images/pink-watercolor-bg.png') no-repeat center center fixed,
+                #ff1493 !important;
+            background-size: cover;
         }
         .font-hebrew { font-family: 'Heebo', sans-serif; }
         .font-display { font-family: 'Playfair Display', serif; }
@@ -39,9 +57,24 @@
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.85);
         }
+        
+        /* Watercolor Background Enhancements */
+        .watercolor-section {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .watercolor-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(236, 72, 153, 0.1), 
+                        0 4px 16px rgba(255, 255, 255, 0.4);
+        }
     </style>
 </head>
-<body class="bg-malabi-cream font-hebrew antialiased">
+<body class="font-hebrew antialiased">
     <!-- Header -->
     <header class="sticky top-0 z-40 backdrop-blur bg-white/70 border-b border-rose-100/60">
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -88,7 +121,7 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-24 bg-gradient-to-b from-white via-rose-50/20 to-white">
+        <section id="about" class="py-24 bg-gradient-to-b from-white/40 via-rose-50/10 to-white/40">
             <div class="container mx-auto px-4">
                 <div class="max-w-7xl mx-auto">
                     <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
@@ -112,7 +145,7 @@
                             
                             <!-- Features -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
-                                <div class="flex items-start space-x-4 space-x-reverse bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                                <div class="flex items-start space-x-4 space-x-reverse bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
                                     <div class="bg-gradient-to-br from-rose-100 to-pink-100 p-4 rounded-xl">
                                         <span class="text-2xl">🌹</span>
                                     </div>
@@ -121,7 +154,7 @@
                                         <p class="text-sm text-gray-600 font-light leading-relaxed">מזוקק ביד מפרחי ורדים נבחרים המביאים ארומה עדינה ומקורית</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start space-x-4 space-x-reverse bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                                <div class="flex items-start space-x-4 space-x-reverse bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
                                     <div class="bg-gradient-to-br from-green-100 to-emerald-100 p-4 rounded-xl">
                                         <span class="text-2xl">🌰</span>
                                     </div>
@@ -209,7 +242,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in" id="products-grid">
                             
                             <!-- Product 1: מלאבי קלאסי -->
-                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="classic all">
+                            <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="classic all">
                                 <!-- Trust Badge -->
                                 <div class="absolute top-4 right-4 z-10">
                                     <span class="bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
@@ -251,7 +284,7 @@
                             </div>
 
                             <!-- Product 2: מלאבי שוקולד -->
-                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="premium all">
+                            <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="premium all">
                                 <!-- Trust Badge -->
                                 <div class="absolute top-4 right-4 z-10">
                                     <span class="bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
@@ -293,7 +326,7 @@
                             </div>
 
                             <!-- Product 3: מלאבי פיסטוק -->
-                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="premium all">
+                            <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="premium all">
                                 <!-- Product Image -->
                                 <div class="relative bg-gradient-to-br from-green-50 to-emerald-50 h-64 overflow-hidden">
                                     <img src="assets/images/products/malabi-pistachio.jpg" 
@@ -328,7 +361,7 @@
                             </div>
 
                             <!-- Product 4: חבילה משפחתית -->
-                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="classic all">
+                            <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="classic all">
                                 <!-- Trust Badge -->
                                 <div class="absolute top-4 right-4 z-10">
                                     <span class="bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
@@ -370,7 +403,7 @@
                             </div>
 
                             <!-- Product 5: מלאבי טבעוני -->
-                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="vegan all">
+                            <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="vegan all">
                                 <!-- Trust Badge -->
                                 <div class="absolute top-4 right-4 z-10">
                                     <span class="bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
@@ -412,7 +445,7 @@
                             </div>
 
                             <!-- Product 6: מלאבי תמרים -->
-                            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="premium all">
+                            <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group cursor-pointer relative" data-category="premium all">
                                 <!-- Product Image -->
                                 <div class="relative bg-gradient-to-br from-yellow-50 to-amber-50 h-64 overflow-hidden">
                                     <img src="assets/images/products/malabi-classic.jpg" 
@@ -560,7 +593,7 @@
     </div>
 
     <!-- Cart Sidebar -->
-    <div id="cartSidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+    <div id="cartSidebar" class="fixed top-0 right-0 h-full w-96 bg-white/95 backdrop-blur-lg shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
         <!-- Cart Header -->
         <div class="bg-malabi-gold p-6 border-b">
             <div class="flex items-center justify-between">
