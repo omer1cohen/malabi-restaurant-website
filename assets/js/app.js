@@ -234,6 +234,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Home Page Initialization
 function initHomePage() {
     loadFeaturedProducts();
+    initProductTabs();
 }
 
 // Load Featured Products for Homepage
@@ -284,3 +285,64 @@ document.addEventListener('error', (e) => {
         }
     }
 }, true);
+
+// Product Tab Functionality
+function initProductTabs() {
+    const tabButtons = document.querySelectorAll('.product-tab');
+    const productCards = document.querySelectorAll('[data-category]');
+    
+    if (!tabButtons.length || !productCards.length) {
+        return;
+    }
+    
+    // Add click event listeners to tabs
+    tabButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const category = e.target.dataset.category;
+            
+            // Update active tab
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            
+            // Filter products
+            filterProducts(category);
+        });
+    });
+}
+
+function filterProducts(category) {
+    const productCards = document.querySelectorAll('[data-category]');
+    
+    productCards.forEach((card, index) => {
+        const cardCategories = card.dataset.category.split(' ');
+        const shouldShow = category === 'all' || cardCategories.includes(category);
+        
+        if (shouldShow) {
+            // Animate in
+            card.style.display = 'block';
+            card.style.animation = `fadeInUp 0.6s ease-out ${index * 0.1}s both`;
+        } else {
+            // Animate out
+            card.style.animation = 'fadeOut 0.3s ease-out forwards';
+            setTimeout(() => {
+                card.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+
+// Add fadeOut animation to CSS
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    }
+`;
+document.head.appendChild(style);
