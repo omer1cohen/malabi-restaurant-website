@@ -2,90 +2,84 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { getButtonClasses } from '@/components/ui/Button'
 
+const entrance = {
+  hidden: { opacity: 0, y: 16 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', duration: 0.55, bounce: 0, delay },
+  }),
+}
+
 export function HeroSection() {
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-      {/* Background with Liquid Animation */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cream-white via-rose-water/20 to-pistachio-mint/30">
-        {/* Watercolor Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
-          style={{
-            backgroundImage: 'url(/assets/images/pink-watercolor-bg.png)',
-          }}
-        />
+    <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
+      <img
+        src="/assets/images/hero-custom.png"
+        alt="רקע של קינוחי מלבי"
+        className="absolute inset-0 h-full w-full object-cover"
+        loading="eager"
+      />
+      <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/45 to-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/15" />
 
-        {/* Animated Gradients */}
+      <div className="container-custom relative z-10 py-24 md:py-32">
         <motion.div
-          className="absolute inset-0 liquid-bg"
-          animate={{
-            background: [
-              'radial-gradient(circle at 20% 80%, rgba(255, 228, 232, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.2) 0%, transparent 50%)',
-              'radial-gradient(circle at 80% 20%, rgba(255, 228, 232, 0.3) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.2) 0%, transparent 50%)',
-            ],
-          }}
-          transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center max-w-3xl mx-auto"
+          initial="hidden"
+          animate="visible"
+          className="text-center lg:text-right max-w-3xl mx-auto lg:mr-0 lg:ml-auto"
         >
-          {/* Badge */}
           <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-block px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm text-deep-pomegranate font-medium text-sm mb-6 border border-rose-water/30"
+            variants={entrance}
+            custom={0}
+            className="inline-block px-4 py-2 rounded-full bg-white/20 text-white font-medium text-sm mb-6 border border-white/30 backdrop-blur-sm"
           >
-            🍨 קינוחים מזרח תיכוניים מסורתיים
+            קינוחים מזרח תיכוניים מסורתיים
           </motion.span>
 
-          {/* Title */}
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[0.95] mb-6">
-            <span className="text-gradient-primary animate-gradient bg-[length:200%_200%]">
-              מיסטר מלבי
-            </span>
-          </h1>
+          <motion.h1
+            variants={entrance}
+            custom={0.08}
+            className="font-display text-5xl sm:text-6xl md:text-7xl font-light leading-[0.95] mb-6 text-balance text-white drop-shadow-md"
+          >
+            מיסטר מלבי
+          </motion.h1>
 
-          {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-xl md:text-2xl text-soft-charcoal mb-4 font-light"
+            variants={entrance}
+            custom={0.16}
+            className="text-xl md:text-2xl text-white/95 mb-4 font-light text-pretty"
           >
             טעמים אותנטיים של המזרח התיכון
           </motion.p>
 
-          {/* Description */}
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-lg text-delicate-gray mb-8 max-w-xl mx-auto"
+            variants={entrance}
+            custom={0.22}
+            className="text-lg text-white/90 mb-8 max-w-xl mx-auto lg:mr-0 text-pretty"
           >
-            מלאבי מסורתי עשוי באהבה מחומרים טריים ואיכותיים. הזמינו עכשיו ותיהנו מחוויה קולינרית מיוחדת!
+            מלאבי מסורתי עשוי באהבה מחומרים טריים ואיכותיים.
+            <br className="hidden sm:block" />
+            הזמינו עכשיו ותיהנו מחוויה קולינרית מיוחדת!
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            variants={entrance}
+            custom={0.28}
+            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
           >
             <Link to="/menu" className={getButtonClasses('primary', 'lg')}>
               לתפריט שלנו
               <span className="mr-2">←</span>
             </Link>
-
-            <Link to="/order" className={getButtonClasses('outline', 'lg')}>
+            <Link
+              to="/order"
+              className={getButtonClasses(
+                'outline',
+                'lg',
+                'border-white/70 text-white hover:bg-white/20 hover:border-white'
+              )}
+            >
               הזמנה מהירה
             </Link>
           </motion.div>
@@ -102,9 +96,9 @@ export function HeroSection() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-rich-cocoa/30 flex items-start justify-center pt-2"
+          className="size-10 rounded-full border-2 border-white/55 flex items-start justify-center pt-2"
         >
-          <div className="w-1.5 h-2.5 rounded-full bg-rich-cocoa/50" />
+          <div className="size-1.5 rounded-full bg-white/75" />
         </motion.div>
       </motion.div>
     </section>
