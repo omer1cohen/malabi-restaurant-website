@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design Tokens - CSS Custom Properties */
+:root {
+  /* Premium Malabi Color Palette */
+  --color-cream-white: #FFF8F3;
+  --color-rose-water: #FFE4E8;
+  --color-pistachio-mint: #D6E8D0;
+  --color-golden-saffron: #FFD87A;
+  --color-deep-pomegranate: #C94C6D;
+  --color-rich-cocoa: #4A3728;
+  --color-silk-cream: #F9F6F0;
+  --color-milk-swirl: #FDF9F4;
+  --color-soft-charcoal: #5A5A5A;
+  --color-delicate-gray: #8B8680;
+
+  /* Malabi Brand Colors */
+  --color-malabi-400: #f472b6;
+  --color-malabi-600: #db3d86;
+
+  /* Liquid Motion Colors */
+  --color-liquid-gold: rgba(255, 215, 0, 0.2);
+  --color-liquid-rose: rgba(255, 228, 232, 0.3);
+  --color-liquid-cream: rgba(255, 248, 243, 0.6);
+
+  /* Typography */
+  --font-family-hebrew: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-family-display: 'Playfair Display', 'Times New Roman', serif;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-out;
+  --transition-base: 0.3s ease-out;
+  --transition-slow: 0.5s ease-out;
+
+  /* Z-indices */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-cart-sidebar: 1045;
+}
+
+/* Base Styles */
+@layer base {
+  html {
+    font-family: var(--font-family-hebrew);
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+    direction: rtl;
+  }
+
+  body {
+    font-family: var(--font-family-hebrew);
+    line-height: 1.8;
+    color: var(--color-rich-cocoa);
+    overflow-x: hidden;
+  }
+
+  /* Hebrew Text Optimization */
+  [lang="he"], .font-hebrew {
+    font-family: var(--font-family-hebrew);
+    font-feature-settings: 'kern' 1;
+  }
+
+  /* Display Typography */
+  h1, h2 {
+    font-family: var(--font-family-display);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+  }
+
+  h3 {
+    font-family: var(--font-family-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+
+  h4, h5, h6 {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  /* Prevent body scroll when cart/modal is open */
+  body.cart-open,
+  body.modal-open {
+    overflow: hidden;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Glass Morphism */
+  .glass {
+    @apply backdrop-blur-glass bg-white/70 border border-white/20;
+  }
+
+  .glass-heavy {
+    @apply backdrop-blur-heavy bg-white/80 border border-white/30;
+  }
+
+  /* Gradient Backgrounds */
+  .gradient-primary {
+    @apply bg-gradient-to-br from-deep-pomegranate to-golden-saffron;
+  }
+
+  .gradient-luxury {
+    @apply bg-gradient-to-br from-rose-water via-cream-white to-pistachio-mint;
+  }
+
+  /* Text Gradients */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-deep-pomegranate via-golden-saffron to-deep-pomegranate;
+    @apply bg-clip-text text-transparent;
+    background-size: 200% 200%;
+  }
+
+  /* Liquid Background Animation */
+  .liquid-bg {
+    background:
+      radial-gradient(circle at 20% 80%, var(--color-liquid-rose) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, var(--color-liquid-gold) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, var(--color-liquid-cream) 0%, transparent 50%);
+  }
+
+  /* Button Base */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-6 py-3 rounded-lg;
+    @apply font-medium text-base;
+    @apply transition-all duration-300;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-malabi-400 focus-visible:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn;
+    @apply bg-gradient-to-br from-deep-pomegranate to-golden-saffron;
+    @apply text-white shadow-lg;
+    @apply hover:shadow-xl hover:-translate-y-0.5;
+    @apply active:translate-y-0 active:shadow-md;
+  }
+
+  .btn-outline {
+    @apply btn;
+    @apply bg-transparent border-2 border-rose-water;
+    @apply text-rich-cocoa;
+    @apply hover:bg-gradient-to-br hover:from-rose-water hover:to-pistachio-mint;
+    @apply hover:border-golden-saffron hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply btn;
+    @apply bg-transparent text-rich-cocoa;
+    @apply hover:bg-rose-water/50;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-white/90 backdrop-blur-sm rounded-xl;
+    @apply border border-white/30;
+    @apply shadow-card transition-all duration-300;
+    @apply hover:shadow-card-hover;
+  }
+
+  /* Form Inputs */
+  .input {
+    @apply w-full px-4 py-3 rounded-lg;
+    @apply bg-white/80 backdrop-blur-sm;
+    @apply border border-rose-water/50;
+    @apply text-rich-cocoa placeholder-delicate-gray;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:border-malabi-400 focus:ring-2 focus:ring-malabi-400/20;
+  }
+
+  .input-error {
+    @apply border-red-400 focus:border-red-400 focus:ring-red-400/20;
+  }
+
+  /* Section Container */
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-center text-3xl md:text-4xl font-display font-light;
+    @apply text-rich-cocoa mb-12;
+    @apply relative;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply absolute -bottom-4 right-1/2 translate-x-1/2;
+    @apply w-20 h-0.5 rounded-full opacity-80;
+    @apply bg-gradient-to-r from-rose-water via-golden-saffron to-pistachio-mint;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  /* RTL-aware utilities */
+  .start-0 {
+    inset-inline-start: 0;
+  }
+
+  .end-0 {
+    inset-inline-end: 0;
+  }
+
+  /* Safe area utilities for PWA */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Hide scrollbar utility */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+/* Watercolor Background Pattern */
+.watercolor-bg {
+  background:
+    url('/assets/images/pink-watercolor-bg.png') no-repeat center center fixed,
+    radial-gradient(circle at 20% 20%, rgba(244, 114, 182, 0.08) 0%, transparent 30%),
+    radial-gradient(circle at 80% 40%, rgba(255, 216, 122, 0.06) 0%, transparent 35%),
+    radial-gradient(circle at 60% 70%, rgba(255, 228, 232, 0.1) 0%, transparent 40%),
+    linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 248, 243, 0.95) 100%);
+  background-attachment: fixed;
+  background-size: cover;
+}

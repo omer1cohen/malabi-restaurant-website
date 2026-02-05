@@ -170,11 +170,11 @@ const cart = {
                     <div class="cart-item-price">${utils.formatPrice(item.price)}</div>
                     <div class="cart-item-controls">
                         <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
+                            <button class="quantity-btn" data-action="decrease" data-id="${item.id}">-</button>
                             <span class="quantity">${item.quantity}</span>
-                            <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
+                            <button class="quantity-btn" data-action="increase" data-id="${item.id}">+</button>
                         </div>
-                        <button class="remove-item" onclick="cart.removeItem('${item.id}')" title="הסר מהעגלה">
+                        <button class="remove-item" data-action="remove" data-id="${item.id}" title="הסר מהעגלה">
                             🗑️
                         </button>
                     </div>
@@ -223,15 +223,41 @@ const cart = {
         // Handle cart sidebar close with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && AppState.ui.cartOpen) {
-                toggleCart();
+                if (typeof toggleCart === 'function') toggleCart();
             }
         });
 
-        // Handle cart button clicks
+        // Handle clicks within the cart container (Event Delegation)
+        const cartItemsContainer = document.getElementById('cartItems');
+        if (cartItemsContainer) {
+            cartItemsContainer.addEventListener('click', (e) => {
+                const target = e.target.closest('button');
+                if (!target || !target.dataset.action) return;
+
+                const action = target.dataset.action;
+                const productId = target.dataset.id;
+                const currentQuantity = this.getProductQuantity(productId);
+
+                switch (action) {
+                    case 'increase':
+                        this.updateQuantity(productId, currentQuantity + 1);
+                        break;
+                    case 'decrease':
+                        this.updateQuantity(productId, currentQuantity - 1);
+                        break;
+                    case 'remove':
+                        this.removeItem(productId);
+                        break;
+                }
+            });
+        }
+
+        // Handle cart button clicks (if any other specific cart buttons exist)
         document.addEventListener('click', (e) => {
-            if (e.target.closest('.cart-btn')) {
+            const cartBtn = e.target.closest('.cart-btn');
+            if (cartBtn) {
                 e.preventDefault();
-                toggleCart();
+                if (typeof toggleCart === 'function') toggleCart();
             }
         });
     },

@@ -542,14 +542,12 @@
     left: -24px;
   }
   
-  .carousel-next {
-    right: -24px;
+      .carousel-next {
+      right: -24px;
+    }
   }
-}
-}
-
-.quantity-selector {
-  display: flex;
+  
+  .quantity-selector {  display: flex;
   align-items: center;
   gap: var(--spacing-sm);
   background: var(--rose-water);

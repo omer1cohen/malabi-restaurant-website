@@ -1,10 +1,10 @@
-# מלאבי פאלס (Malabi Palace) 🍮
+# מיסטר מלבי (Mister Malabi) 🍮
 
 A professional, mobile-first e-commerce website for a traditional Middle Eastern dessert restaurant with WhatsApp integration.
 
 ## Project Overview
 
-Malabi Palace is a static e-commerce website that allows customers to browse traditional malabi desserts and place orders through WhatsApp integration. The site features a warm, artisanal aesthetic with full RTL (Right-to-Left) support for Hebrew content.
+Mister Malabi is a static e-commerce website that allows customers to browse traditional malabi desserts and place orders through WhatsApp integration. The site features a warm, artisanal aesthetic with full RTL (Right-to-Left) support for Hebrew content.
 
 ## ✨ Features
 

@@ -1,0 +1,5 @@
+export { HeroSection } from './HeroSection'
+export { AboutSection } from './AboutSection'
+export { FeaturedProducts } from './FeaturedProducts'
+export { TrustBadges } from './TrustBadges'
+export { InstagramGallery } from './InstagramGallery'

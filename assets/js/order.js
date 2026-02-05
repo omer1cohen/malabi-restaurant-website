@@ -52,21 +52,27 @@ function loadOrderSummary() {
 // Bind order form events
 function bindOrderForm() {
     const orderForm = document.getElementById('orderForm');
-    if (!orderForm) return;
+    if (orderForm) {
+        orderForm.addEventListener('submit', handleOrderSubmission);
+        
+        // Real-time validation
+        const inputs = orderForm.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => validateField(input));
+            input.addEventListener('input', () => clearFieldError(input));
+        });
+        
+        // Phone number formatting
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', formatPhoneNumber);
+        }
+    }
     
-    orderForm.addEventListener('submit', handleOrderSubmission);
-    
-    // Real-time validation
-    const inputs = orderForm.querySelectorAll('input, textarea, select');
-    inputs.forEach(input => {
-        input.addEventListener('blur', () => validateField(input));
-        input.addEventListener('input', () => clearFieldError(input));
-    });
-    
-    // Phone number formatting
-    const phoneInput = document.getElementById('phone');
-    if (phoneInput) {
-        phoneInput.addEventListener('input', formatPhoneNumber);
+    // Success modal close button
+    const closeSuccessBtn = document.querySelector('.close-success-modal');
+    if (closeSuccessBtn) {
+        closeSuccessBtn.addEventListener('click', closeSuccessModal);
     }
 }
 

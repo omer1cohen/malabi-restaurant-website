@@ -152,12 +152,12 @@ const ProductManager = {
                     ${product.available ? `
                         <div class="product-actions">
                             <div class="quantity-selector" ${cartQuantity === 0 ? 'style="display: none;"' : ''}>
-                                <button class="quantity-btn" onclick="cart.updateQuantity('${product.id}', ${cartQuantity - 1})">-</button>
+                                <button class="quantity-btn" data-action="decrease" data-id="${product.id}">-</button>
                                 <span class="quantity">${cartQuantity}</span>
-                                <button class="quantity-btn" onclick="cart.updateQuantity('${product.id}', ${cartQuantity + 1})">+</button>
+                                <button class="quantity-btn" data-action="increase" data-id="${product.id}">+</button>
                             </div>
                             <button class="btn btn-primary add-to-cart-btn" 
-                                    onclick="cart.addItem('${product.id}', 1)"
+                                    data-action="add" data-id="${product.id}"
                                     ${cartQuantity > 0 ? 'style="display: none;"' : ''}>
                                 הוסף לעגלה
                             </button>
@@ -172,18 +172,36 @@ const ProductManager = {
 // Cart Toggle Function (Global)
 function toggleCart() {
     const cartSidebar = document.getElementById('cartSidebar');
+    const cartOverlay = document.getElementById('cartOverlay');
+    
     if (cartSidebar) {
         AppState.ui.cartOpen = !AppState.ui.cartOpen;
         cartSidebar.classList.toggle('open', AppState.ui.cartOpen);
+        
+        if (cartOverlay) {
+            cartOverlay.classList.toggle('visible', AppState.ui.cartOpen);
+            cartOverlay.classList.toggle('opacity-100', AppState.ui.cartOpen);
+            cartOverlay.classList.toggle('opacity-0', !AppState.ui.cartOpen);
+            cartOverlay.classList.toggle('invisible', !AppState.ui.cartOpen);
+        }
         
         // Prevent body scroll when cart is open
         document.body.classList.toggle('cart-open', AppState.ui.cartOpen);
     }
 }
 
+// Modal Close Function
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.classList.remove('modal-open');
+    }
+}
+
 // Initialize Application
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log('Malabi Palace App Initializing...');
+    console.log('Mister Malabi App Initializing...');
     
     // Load products
     await ProductManager.loadProducts();
@@ -196,6 +214,39 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Cart object not found or missing init method');
     }
     
+    // Global Click Handler (Event Delegation)
+    document.addEventListener('click', (e) => {
+        const target = e.target.closest('button, a, .cart-overlay');
+        if (!target) return;
+
+        // Toggle Cart
+        if (target.matches('.cart-btn, .cart-close, #cartOverlay, .cart-overlay')) {
+            e.preventDefault();
+            toggleCart();
+        }
+
+        // Close Modal
+        if (target.matches('.modal-close')) {
+            const modal = target.closest('.modal');
+            if (modal) {
+                closeModal(modal.id);
+            }
+        }
+
+        // Product Actions
+        if (target.dataset.action && target.dataset.id) {
+            const action = target.dataset.action;
+            const productId = target.dataset.id;
+            const currentQuantity = cart.getProductQuantity(productId);
+
+            if (action === 'add' || action === 'increase') {
+                cart.addItem(productId, 1);
+            } else if (action === 'decrease') {
+                cart.updateQuantity(productId, currentQuantity - 1);
+            }
+        }
+    });
+
     // Initialize page-specific functionality
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
@@ -228,7 +279,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
     
-    console.log('Malabi Palace App Initialized Successfully');
+    console.log('Mister Malabi App Initialized Successfully');
 });
 
 // Home Page Initialization

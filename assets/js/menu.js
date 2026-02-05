@@ -22,7 +22,7 @@ async function loadMenuProducts(category = 'all') {
             productsContainer.innerHTML = `
                 <div class="no-products">
                     <p>לא נמצאו מוצרים בקטגוריה זו</p>
-                    <button class="btn btn-outline" onclick="loadMenuProducts('all')">הצג את כל המוצרים</button>
+                    <button class="btn btn-outline" data-action="reload-menu" data-category="all">הצג את כל המוצרים</button>
                 </div>
             `;
             return;
@@ -43,7 +43,7 @@ async function loadMenuProducts(category = 'all') {
         productsContainer.innerHTML = `
             <div class="error-state">
                 <p>שגיאה בטעינת המוצרים</p>
-                <button class="btn btn-outline" onclick="loadMenuProducts('${category}')">נסה שוב</button>
+                <button class="btn btn-outline" data-action="reload-menu" data-category="${category}">נסה שוב</button>
             </div>
         `;
     } finally {
@@ -87,6 +87,29 @@ function bindProductModals() {
             
             const productId = productCard.dataset.productId;
             openProductModal(productId);
+            return;
+        }
+
+        // Handle reload menu button
+        const reloadBtn = e.target.closest('[data-action="reload-menu"]');
+        if (reloadBtn) {
+            loadMenuProducts(reloadBtn.dataset.category);
+            return;
+        }
+
+        // Modal Specific Actions (delegated to cart)
+        const modalBtn = e.target.closest('.product-modal-actions button');
+        if (modalBtn && modalBtn.dataset.action && modalBtn.dataset.id) {
+            const action = modalBtn.dataset.action;
+            const productId = modalBtn.dataset.id;
+            
+            // The global handler in app.js already handles add/increase/decrease
+            // But we need to refresh the modal UI after these actions
+            setTimeout(() => {
+                if (document.getElementById('productModal').classList.contains('show')) {
+                    openProductModal(productId);
+                }
+            }, 100);
         }
     });
 }
@@ -140,13 +163,13 @@ function openProductModal(productId) {
                             <div class="modal-quantity-selector">
                                 <span>כמות בעגלה:</span>
                                 <div class="quantity-controls">
-                                    <button class="quantity-btn" onclick="cart.updateQuantity('${productId}', ${cartQuantity - 1})">-</button>
+                                    <button class="quantity-btn" data-action="decrease" data-id="${productId}">-</button>
                                     <span class="quantity">${cartQuantity}</span>
-                                    <button class="quantity-btn" onclick="cart.updateQuantity('${productId}', ${cartQuantity + 1})">+</button>
+                                    <button class="quantity-btn" data-action="increase" data-id="${productId}">+</button>
                                 </div>
                             </div>
                         ` : `
-                            <button class="btn btn-primary btn-large" onclick="cart.addItem('${productId}', 1)">
+                            <button class="btn btn-primary btn-large" data-action="add" data-id="${productId}">
                                 הוסף לעגלה
                             </button>
                         `}
