@@ -27,7 +27,7 @@
 
   /* Typography */
   --font-family-hebrew: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  --font-family-display: 'Playfair Display', 'Times New Roman', serif;
+  --font-family-display: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 
   /* Spacing */
   --spacing-xs: 0.25rem;
@@ -74,22 +74,21 @@
     font-feature-settings: 'kern' 1;
   }
 
-  /* Display Typography */
+  /* Display Typography — Heebo handles Hebrew beautifully */
   h1, h2 {
-    font-family: var(--font-family-display);
-    font-weight: 300;
-    letter-spacing: -0.03em;
+    font-family: var(--font-family-hebrew);
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
   h3 {
-    font-family: var(--font-family-display);
-    font-weight: 400;
-    letter-spacing: -0.015em;
+    font-family: var(--font-family-hebrew);
+    font-weight: 600;
+    letter-spacing: -0.005em;
   }
 
   h4, h5, h6 {
     font-weight: 500;
-    letter-spacing: -0.01em;
   }
 
   /* Prevent body scroll when cart/modal is open */
@@ -199,7 +198,7 @@
 
   /* Section Title */
   .section-title {
-    @apply text-center text-3xl md:text-4xl font-display font-light;
+    @apply text-center text-3xl md:text-4xl font-hebrew font-bold;
     @apply text-rich-cocoa mb-12;
     @apply relative;
   }

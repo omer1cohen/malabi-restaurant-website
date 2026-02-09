@@ -42,7 +42,7 @@ export default {
       },
       fontFamily: {
         'hebrew': ['Heebo', 'sans-serif'],
-        'display': ['Playfair Display', 'serif'],
+        'display': ['Heebo', 'sans-serif'],
         'inter': ['Inter', 'sans-serif']
       },
       animation: {

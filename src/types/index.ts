@@ -13,7 +13,7 @@ export interface Product {
   featured: boolean
 }
 
-export type ProductCategory = 'classic' | 'chocolate' | 'pistachio' | 'seasonal'
+export type ProductCategory = 'classic' | 'chocolate' | 'pistachio' | 'seasonal' | 'knafeh'
 
 export interface ProductsData {
   products: Product[]

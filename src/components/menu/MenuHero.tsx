@@ -130,7 +130,7 @@ export function MenuHero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-4"
+            className="font-hebrew text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4"
           >
             <span className="text-gradient-primary animate-gradient bg-[length:200%_200%]">
               התפריט

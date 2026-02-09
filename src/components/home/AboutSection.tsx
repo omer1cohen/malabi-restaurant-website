@@ -40,7 +40,7 @@ export function AboutSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-1 md:order-2"
           >
-            <h2 className="section-title text-right mb-8">
+            <h2 className="section-title !text-right mb-8">
               הסיפור שלנו
             </h2>
 

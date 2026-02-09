@@ -20,8 +20,9 @@ export function HeroSection() {
         className="absolute inset-0 h-full w-full object-cover"
         loading="eager"
       />
-      <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/45 to-black/30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/15" />
+      {/* Stronger gradient for text legibility */}
+      <div className="absolute inset-0 bg-gradient-to-l from-black/75 via-black/50 to-black/35" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
 
       <div className="container-custom relative z-10 py-24 md:py-32">
         <motion.div
@@ -29,40 +30,46 @@ export function HeroSection() {
           animate="visible"
           className="text-center lg:text-right max-w-3xl mx-auto lg:mr-0 lg:ml-auto"
         >
+          {/* Tagline badge */}
           <motion.span
             variants={entrance}
             custom={0}
-            className="inline-block px-4 py-2 rounded-full bg-white/20 text-white font-medium text-sm mb-6 border border-white/30 backdrop-blur-sm"
+            className="inline-block px-5 py-2 rounded-full bg-white/15 text-white/90 font-medium text-sm mb-6 border border-white/20 backdrop-blur-sm"
           >
             קינוחים מזרח תיכוניים מסורתיים
           </motion.span>
 
+          {/* Brand heading — Heebo 800 for bold, clean Hebrew */}
           <motion.h1
             variants={entrance}
             custom={0.08}
-            className="font-display text-5xl sm:text-6xl md:text-7xl font-light leading-[0.95] mb-6 text-balance text-white drop-shadow-md"
+            className="font-hebrew text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95] mb-6 text-white"
+            style={{ textShadow: '0 2px 30px rgba(0,0,0,0.4)' }}
           >
             מיסטר מלבי
           </motion.h1>
 
+          {/* Subtitle */}
           <motion.p
             variants={entrance}
             custom={0.16}
-            className="text-xl md:text-2xl text-white/95 mb-4 font-light text-pretty"
+            className="text-xl md:text-2xl text-white/90 mb-3 font-medium"
           >
             טעמים אותנטיים של המזרח התיכון
           </motion.p>
 
+          {/* Description */}
           <motion.p
             variants={entrance}
             custom={0.22}
-            className="text-lg text-white/90 mb-8 max-w-xl mx-auto lg:mr-0 text-pretty"
+            className="text-base md:text-lg text-white/75 mb-10 max-w-xl mx-auto lg:mr-0 leading-relaxed"
           >
             מלאבי מסורתי עשוי באהבה מחומרים טריים ואיכותיים.
             <br className="hidden sm:block" />
             הזמינו עכשיו ותיהנו מחוויה קולינרית מיוחדת!
           </motion.p>
 
+          {/* CTA Buttons */}
           <motion.div
             variants={entrance}
             custom={0.28}
@@ -77,7 +84,7 @@ export function HeroSection() {
               className={getButtonClasses(
                 'outline',
                 'lg',
-                'border-white/70 text-white hover:bg-white/20 hover:border-white'
+                'border-white/60 text-white hover:bg-white/15 hover:border-white'
               )}
             >
               הזמנה מהירה
@@ -96,9 +103,9 @@ export function HeroSection() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="size-10 rounded-full border-2 border-white/55 flex items-start justify-center pt-2"
+          className="size-10 rounded-full border-2 border-white/40 flex items-start justify-center pt-2"
         >
-          <div className="size-1.5 rounded-full bg-white/75" />
+          <div className="size-1.5 rounded-full bg-white/60" />
         </motion.div>
       </motion.div>
     </section>

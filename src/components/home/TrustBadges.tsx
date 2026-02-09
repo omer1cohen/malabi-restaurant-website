@@ -42,7 +42,7 @@ export function TrustBadges() {
               className="text-center"
             >
               <span className="text-4xl mb-3 block">{badge.icon}</span>
-              <h3 className="font-semibold text-rich-cocoa mb-1">{badge.title}</h3>
+              <h3 className="font-hebrew font-semibold text-rich-cocoa mb-1">{badge.title}</h3>
               <p className="text-sm text-delicate-gray">{badge.description}</p>
             </motion.div>
           ))}

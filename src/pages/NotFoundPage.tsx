@@ -15,7 +15,7 @@ export function NotFoundPage() {
         >
           <span className="text-8xl mb-6 block">🍨</span>
 
-          <h1 className="font-display text-5xl md:text-6xl font-light text-rich-cocoa mb-4">
+          <h1 className="font-hebrew text-5xl md:text-6xl font-extrabold text-rich-cocoa mb-4">
             404
           </h1>
 

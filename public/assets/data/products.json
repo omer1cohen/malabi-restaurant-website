@@ -129,6 +129,45 @@
       "allergens": ["חלב", "אגוזים"],
       "available": true,
       "featured": true
+    },
+    {
+      "id": "knafeh-classic",
+      "name": "כנאפה קלאסית",
+      "nameEn": "Classic Knafeh",
+      "description": "כנאפה מסורתית פריכה עם גבינה נמסה ופיסטוקים קלויים, מוגשת חמה עם סירופ סוכר.",
+      "price": 35,
+      "image": "assets/images/products/knafeh-classic.jpg",
+      "category": "knafeh",
+      "ingredients": ["בצק קדאיף", "גבינה נאבולסית", "סירופ סוכר", "פיסטוקים קלויים", "חמאה"],
+      "allergens": ["חלב", "גלוטן", "אגוזים"],
+      "available": true,
+      "featured": true
+    },
+    {
+      "id": "knafeh-chocolate",
+      "name": "כנאפה שוקולד",
+      "nameEn": "Chocolate Knafeh",
+      "description": "כנאפה פריכה עם שוקולד נוטלה וקרם טחינה, מעוטרת בפיסטוקים. שילוב מזרחי-מערבי מושלם.",
+      "price": 40,
+      "image": "assets/images/products/knafeh-chocolate.jpg",
+      "category": "knafeh",
+      "ingredients": ["בצק קדאיף", "נוטלה", "קרם טחינה", "פיסטוקים קלויים", "חמאה"],
+      "allergens": ["חלב", "גלוטן", "אגוזים", "שומשום"],
+      "available": true,
+      "featured": false
+    },
+    {
+      "id": "knafeh-cream",
+      "name": "כנאפה קרם",
+      "nameEn": "Cream Knafeh",
+      "description": "כנאפה עדינה עם קרם טחינה ביתי ופיסטוקים טריים. מנה אישית מוגשת חמה.",
+      "price": 38,
+      "image": "assets/images/products/knafeh-cream.jpg",
+      "category": "knafeh",
+      "ingredients": ["בצק קדאיף", "קרם טחינה", "פיסטוקים טריים", "סירופ סוכר", "חמאה"],
+      "allergens": ["חלב", "גלוטן", "אגוזים", "שומשום"],
+      "available": true,
+      "featured": false
     }
   ]
 }

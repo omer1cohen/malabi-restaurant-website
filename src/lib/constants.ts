@@ -28,6 +28,7 @@ export const CATEGORIES: CategoryTab[] = [
   { id: 'chocolate', label: 'שוקולד', icon: '🍫' },
   { id: 'pistachio', label: 'פיסטוק', icon: '🥜' },
   { id: 'seasonal', label: 'עונתי', icon: '🌸' },
+  { id: 'knafeh', label: 'כנאפה', icon: '🍯' },
 ]
 
 // Delivery Time Slots

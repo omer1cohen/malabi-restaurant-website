@@ -8,7 +8,7 @@ export function OrderPage() {
       <div className="container-custom">
         {/* Page Header */}
         <div className="text-center mb-8">
-          <h1 className="font-display text-4xl md:text-5xl font-light text-rich-cocoa mb-4">
+          <h1 className="font-hebrew text-4xl md:text-5xl font-bold text-rich-cocoa mb-4">
             השלמת הזמנה
           </h1>
           <p className="text-lg text-delicate-gray max-w-xl mx-auto">
